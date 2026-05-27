@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
-import psycopg2
+import psycopg2 #type: ignore
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'users',
+    'shop',
     'admin_interface',
     'colorfield',
     'django.contrib.admin',
@@ -83,7 +84,7 @@ DATABASES = {
         'USER': 'gulyaev',
         'PASSWORD': 'GN68630s',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 
