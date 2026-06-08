@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Список категорий</title>
+</head>
+<body>
+  <h1>Категории товаров</h1>
+  <ul>
+    {% for category in categories %}
+      <li>
+        <a href="{% url 'shop:category_detail' category.id %}">{{ category.name }}</a>
+        <p>{{ category.description|truncatewords:20 }}</p>
+      </li>
+    {% empty %}
+      <li>Категорий пока нет</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'shop:product_list' %}">К каталогу товаров</a>
+</body>
+</html>

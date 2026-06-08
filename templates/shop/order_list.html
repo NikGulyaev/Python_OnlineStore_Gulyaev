@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Список заказов</title>
+</head>
+<body>
+  <h1>Заказы</h1>
+  <ul>
+    {% for order in orders %}
+      <li>
+        <a href="{% url 'shop:order_detail' order.id %}">Заказ #{{ order.id }}</a>
+        от {{ order.created_at|date:"d.m.Y H:i" }}:
+        {{ order.customer.first_name }} {{ order.customer.last_name }} —
+        {{ order.product.name }} (кол-во: {{ order.quantity }})
+      </li>
+    {% empty %}
+      <li>Заказов пока нет</li>
+    {% endfor %}
+</body>
+</html>
