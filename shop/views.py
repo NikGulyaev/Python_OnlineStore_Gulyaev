@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect #type: ignore
 from django.contrib import messages #type: ignore
+from django.contrib.auth import login #type: ignore
+from django.contrib.auth.forms import UserCreationForm #type: ignore
 from .models import Category, Product, Customer, Order, Cart, CartItem
 from .forms import CartForm 
 
@@ -112,3 +114,22 @@ def add_to_cart(request):
         form = CartForm()
 
     return render(request, 'shop/add_to_cart.html', {'form': form})
+
+
+#Регистрация
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import render, redirect
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.Post)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            form = UserCreationForm()
+    else:
+        form = UserCreationForm()
+        return render(request, 'registration/register.html', {'form': form})

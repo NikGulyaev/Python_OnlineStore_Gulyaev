@@ -26,4 +26,7 @@ urlpatterns = [
     # Корзина
     path('cart/', views.cart_view, name='cart'),
     path('add-to-cart/', views.add_to_cart, name='add_to_cart'),
+
+    #Регистрация
+    path('register/', views.register, name='register'),
 ]
