@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-</head>
-<body>
-  <h1>Product List</h1>
-  <ul>
+{% extends "base.html" %}
+{% block title %}Все товары{% endblock %}
+{% block content %}
+<h1>Каталог товаров</h1>
+<div class="row">
     {% for product in products %}
-    <li>{{ product.name }}</li>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} руб.</p>
+                <a href="{% url 'shop:product_detail' product.id %}" class="btn btn-outline-primary">Подробнее</a>
+            </div>
+        </div>
     {% endfor %}
-  </ul>
-  
-</body>
-</html>
+</div>
+{% endblock %}

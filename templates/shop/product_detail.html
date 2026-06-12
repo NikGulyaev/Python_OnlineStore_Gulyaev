@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-</head>
-<body>
-    <h1>{{ product.name }}</h1>
-    <p>{{ product.description }}</p>
-    <p>Price: {{ product.price }}</p>
-  
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
+        {% else %}
+            <div class="text-center text-muted">Изображение отсутствует</div>
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1>{{ product.name }}</h1>
+        <p class="lead">{{ product.price }} руб.</p>
+        <p>{{ product.description }}</p>
+
+        {% if product.is_active %}
+            <form method="post" action="{% url 'shop:add_to_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Количество:</label>
+            <input type="number" name="quantity" value="1" min="1" class="form-control" style="width: 100px;">
+        </div>
+        <button type="submit" class="btn btn-success">Добавить в корзину</button>
+            </form>
+        {% else %}
+            <p class="text-danger">Товар временно недоступен</p>
+        {% endif %}
+
+        <hr>
+        <p><strong>Категория:</strong> {{ product.category.name }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Список категорий</title>
-</head>
-<body>
-  <h1>Категории товаров</h1>
-  <ul>
+{% extends "base.html" %}
+{% block title %}Категории товаров{% endblock %}
+{% block content %}
+<h1>Категории товаров</h1>
+<ul class="list-group">
     {% for category in categories %}
-      <li>
-        <a href="{% url 'shop:category_detail' category.id %}">{{ category.name }}</a>
-        <p>{{ category.description|truncatewords:20 }}</p>
-      </li>
+        <li class="list-group-item">
+            <a href="{% url 'shop:category_detail' category.id %}">{{ category.name }}</a>
+            <p class="text-muted">{{ category.description|truncatechars:100 }}</p>
+        </li>
     {% empty %}
-      <li>Категорий пока нет</li>
+        <li class="list-group-item">Категории не созданы</li>
     {% endfor %}
-  </ul>
-  <a href="{% url 'shop:product_list' %}">К каталогу товаров</a>
-</body>
-</html>
+</ul>
+{% endblock %}

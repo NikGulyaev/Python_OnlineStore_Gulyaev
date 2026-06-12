@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+<h1>Добро пожаловать в наш интернет‑магазин!</h1>
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            {% else %}
+                <div class="card-img-top text-center text-muted">Нет изображения</div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }} руб.</p>
+                {% if product.is_active %}
+                    <a href="{% url 'shop:product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+                {% else %}
+                    <span class="text-muted">Товар недоступен</span>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>В магазине пока нет товаров.</p>
+    {% endfor %}
+</div>
+{% endblock %}
