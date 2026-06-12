@@ -1,5 +1,5 @@
 from django.urls import path #type: ignore
-from . import views
+from shop import views
 
 app_name = 'shop'
 
@@ -29,4 +29,5 @@ urlpatterns = [
 
     #Регистрация
     path('register/', views.register, name='register'),
+    path('login/', views.login_view, name='login'),
 ]
