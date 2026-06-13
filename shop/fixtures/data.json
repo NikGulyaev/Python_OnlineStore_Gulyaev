@@ -1,0 +1,22 @@
+[
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Электроника",
+      "description": "Электронные устройства и гаджеты"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "name": "Смартфон Samsung Galaxy S23",
+      "description": "Флагманский смартфон",
+      "price": "79990.00",
+      "category": 1,
+      "is_active": true,
+      "stock_quantity": 50
+    }
+  }
+]

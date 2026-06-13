@@ -1,0 +1,34 @@
+[
+  {
+    "product_id": 2,
+    "product_name": "Кофеварка DeLonghi",
+    "category": "Бытовая техника",
+    "price": "18990.00",
+    "quantity": 15,
+    "updated_at": "2026-06-12T22:02:40.288083+00:00"
+  },
+  {
+    "product_id": 5,
+    "product_name": "Беспроводные наушники Sony",
+    "category": "Электроника",
+    "price": "12990.00",
+    "quantity": 100,
+    "updated_at": "2026-06-12T22:02:40.283769+00:00"
+  },
+  {
+    "product_id": 4,
+    "product_name": "Ноутбук ASUS VivoBook",
+    "category": "Электроника",
+    "price": "54990.00",
+    "quantity": 25,
+    "updated_at": "2026-06-12T22:02:40.279122+00:00"
+  },
+  {
+    "product_id": 3,
+    "product_name": "Смартфон Samsung Galaxy S23",
+    "category": "Электроника",
+    "price": "79990.00",
+    "quantity": 50,
+    "updated_at": "2026-06-12T22:02:40.274288+00:00"
+  }
+]
