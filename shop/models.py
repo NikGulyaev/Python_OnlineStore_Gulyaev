@@ -1,5 +1,8 @@
 from django.db import models #type: ignore
+from django.db import models
+from django.urls import reverse #type: ignore
 from users.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название')
@@ -129,3 +132,33 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f'Order {self.order.id}: {self.quantity} x {self.product.name}'
+
+
+
+class StockBalance(models.Model):
+    product = models.OneToOneField(
+        'Product',  # замените на вашу модель товара
+        on_delete=models.CASCADE,
+        verbose_name='Товар',
+        related_name='stock_balance'
+    )
+    quantity = models.PositiveIntegerField(
+        default=0,
+        verbose_name='Количество на складе'
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Последнее обновление'
+    )
+
+    class Meta:
+        verbose_name = 'Остаток товара'
+        verbose_name_plural = 'Остатки товаров'
+        ordering = ['-updated_at']
+
+    def __str__(self):
+        return f'{self.product.name} — {self.quantity} шт.'
+
+    def get_absolute_url(self):
+        return reverse('shop:stock_balance_detail', args=[str(self.id)])
+
