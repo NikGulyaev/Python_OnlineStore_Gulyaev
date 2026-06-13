@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand #type: ignore
 from shop.models import StockBalance
 import json
 import csv
